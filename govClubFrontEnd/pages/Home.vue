@@ -4,7 +4,7 @@
 
 <template>
   <header class="header">
-    <h1 class="header__title">Welcome to the Home Page</h1>
+<!--    <h1 class="header__title">Welcome to the Home Page</h1>-->
   </header>
 </template>
 
