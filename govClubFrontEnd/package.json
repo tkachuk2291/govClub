@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "modern-css-reset": "^1.4.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^3.17.6",
     "vue": "^3.5.17",
