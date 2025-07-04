@@ -7,6 +7,7 @@
     <main>
       <section class="hero">
         <h1 class="hero__title hero__item1">Gov Club відкриває двері </h1>
+
         <h1 class="hero__title hero__item2">державного сектору</h1>
         <div class="hero__container hero__item3">
           <p class="hero__text">Об'єднуємо людей, які вірять в Україну.</p>
@@ -25,39 +26,47 @@
   }
 }
 
-.hero{
+.hero {
   max-width: 1280px;
+  //row-gap: 50px;
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: repeat(12 , 1fr);
+  grid-template-columns: repeat(13, 1fr);
   grid-auto-flow: column;
 
 
   &__item1 {
-    grid-column: 1 / 11;
-  }
-  &__item2 {
-    grid-column: 6 / 12;
-  }
-  &__item3 {
     grid-column: 1 / 13;
   }
+
+  &__item2 {
+    grid-column: 4 / 13;
+    margin-bottom: 50px;
+  }
+
+  &__item3 {
+    grid-column: 1 / 14;
+  }
+
   &__container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 150px;
   }
-  &__title {
-      font-family: Inter;
-      font-weight: 700;
-      font-size: 80px;
 
-      //line-height: 120%;
-      //letter-spacing: 0;
+  &__title {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 1.2;
+
+    //line-height: 120%;
+    //letter-spacing: 0;
   }
-  &__button{
+
+  &__button {
     width: 950px;
     height: 80px;
     text-decoration: none;
@@ -70,6 +79,7 @@
     align-items: center;
     justify-content: center;
   }
+
   &__text {
     max-width: 180px;
     font-family: Inter;
@@ -80,8 +90,12 @@
 
   }
 
-}
+  &__gap-container {
 
+
+  }
+
+}
 
 
 </style>
