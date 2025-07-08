@@ -3,7 +3,6 @@
     <Header></Header>
     <NuxtPage />
     <NuxtRouteAnnouncer />
-
   </div>
 </template>
 
