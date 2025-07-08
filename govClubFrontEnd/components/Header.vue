@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <header class="header">
+  <header class="header width-md">
     <img class="header__img" alt="HeaderLogo" src="/header/headerLogo.svg"/>
     <nav class="header__nav">
       <a class="header__link" href="#">Напрямки</a>
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1280px;
+  max-width: 1480px;
   margin: 0 auto;
 
   &__nav {
