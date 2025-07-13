@@ -1,5 +1,6 @@
 from django.urls import path
 
+from .views import HomepageView
 urlpatterns = [
-    # path('api-auth/', )
+    path('home-page/', HomepageView.as_view())
 ]

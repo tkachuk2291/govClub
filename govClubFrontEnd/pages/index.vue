@@ -6,7 +6,6 @@
   <header class="header">
     <main class="main width-lg">
       <section class="hero-section">
-
         <div class="hero-content-top width-md">
           <h1 class="hero-content-top__title hero-content-top__item1">Gov Club відкриває двері </h1>
           <h1 class="hero-content-top__title hero-content-top__item2">державного сектору</h1>
@@ -64,8 +63,6 @@
           </div>
 
         </div>
-
-
       </section>
       <section class="directions width-md">
         <h2 class="directions__title">напрямки</h2>
