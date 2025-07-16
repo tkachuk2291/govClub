@@ -1,4 +1,18 @@
 <script setup lang="ts">
+
+const route = useRoute()
+const slug = route.params.slug
+
+
+const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001/course-card-detail/${slug}`, {
+  server: true,
+  method: 'GET',
+  headers: {
+    accept: 'application/json'
+  }
+})
+console.log(detailPage , 'DD')
+
 </script>
 
 <template>
@@ -8,13 +22,17 @@
         <div class="course-card">
           <div class="course-card__header">
             <div class="course-card__header-container">
-              <h2 class="course-card__date">27.02.2023 </h2>
+              <h2 class="course-card__date">{{detailPage.hero_section.date}}</h2>
               <a href="#" class="course-card__button">Записатися</a>
             </div>
-            <h3 class="course-card__title">Авторський курс з комунікацій</h3>
+            <h3 class="course-card__title">{{detailPage.hero_section.section_title}}</h3>
           </div>
           <div class="course-card__content">
-            <img class="course-card__img" alt="course" src="/course-announcements/detail-page/authors-courses.png"/>
+            <img
+                class="course-card__img"
+                alt="course"
+                :src="detailPage.hero_section.image"
+            />
 
           </div>
         </div>
@@ -24,10 +42,12 @@
       <div class="hero-content-bottom">
         <div class="curator-card">
           <div class="curator-card__header">
-            <h3 class="curator-card__header-text">Куратори</h3>
+            <h3 class="curator-card__header-text">{{detailPage.curator.section_title}}</h3>
           </div>
           <div class="curator-card__content">
-            <img class="curator-card__img" src="/curators/curator.png" alt="curator"/>
+            <img class="curator-card__img"
+                 :src="detailPage.curator.image"
+                 alt="curator"/>
             <div class="curator-card__text-container">
               <h4 class="curator-card__title">Леся Червінська</h4>
               <p class="curator-card__text">Кандидат наук, магістр державного
@@ -39,34 +59,26 @@
       </div>
     </section>
 
-<!--    <section class="schedule width-sm"></section>-->
+    <!--    <section class="schedule width-sm"></section>-->
     <section class="info width-sm">
-      <h2 class="info__title">Детальніше про наш курс</h2>
-      <p class="info__text">У рамках Форуму CDTO пройшли виступи CDTO в стилі TEDx.Цей динамічний формат дозволив
-        дізнатися про рішення, які реалізовували у себе наші учасники. CDTO НАЗК Станіслава Гейдера розповідав про те,
-        як іт-інструменти допомагають підвищити взаємодію в організації CDTO Мінекономіки Ігор Дядюра поділився досвідом
-        про цифрову трансформація дозвільної системи CDTO Мінагро Тарас Дзьоба розказав про використання даних та
-        алгоритмів для вироблення державних політик у агросекторі CDTO
-        Держспецзв'язку Віктор Жора розповів про реєстр ОКІІ CDTO Міндовкілля Руслан Стрілець висвітлив тему залучення
-        стейкхолдерів та громадського сектору до цифровізації на прикладі ЕКО-послуг СДТО Держпродспоживслужби Анатолій
-        Вовнюк розказав про спільне й відмінне у трансформаціях у державному та комерційному секторах Директор ДП
-        Прозоро Василь Задворний пояснив важливістьволодіння ІТ системами й як дійсно управляти зоною своєї
-        відповідальностіРадник Міністра охорони здоров'я Роман Ланський поділився досвідом того, яка теорія та практика
-        регіонального впровадження диспетчеризації швидкої допомогиЕкс-СДТО Митниці Євген Єнтіс розповів про те, як він
-        разом з командою робив реформу у Державній митній службі України</p>
+      <h2 class="info__title">{{detailPage.about_course.section_title}}</h2>
+      <p class="info__text">{{detailPage.about_course.description}}</p>
     </section>
     <section class="conference width-sm">
-<!--      <img class="conference__img" src="/conference/conference.png" alt="conference"/>-->
+
+            <img class="conference__img"
+                 :src="detailPage.course_photo.image"
+                 alt="conference"/>
     </section>
     <section class="feedback">
-      <feedback />
+      <feedback/>
     </section>
   </main>
 </template>
 
 <style scoped lang="scss">
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -90,6 +102,7 @@
   }
 
   &__date {
+    font-family: Sarala;
     font-weight: 400;
     font-size: 32px;
     line-height: 1.6;
@@ -110,7 +123,8 @@
     justify-content: center;
 
   }
-  &__title{
+
+  &__title {
     font-weight: 700;
     font-size: 40px;
     line-height: 1.5;
@@ -196,12 +210,12 @@
   }
 }
 
-.conference{
-  &__img{
-    width: 800px;
+.conference {
+  &__img {
+    border-radius:30px;
+    width: 840px;
   }
 }
-
 
 
 </style>

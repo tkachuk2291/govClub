@@ -14,21 +14,20 @@
 
       <div class="feedback__content">
         <form class="form-feedback">
-          <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
-
-          <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
-
-          <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
-
-          <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
-
+          <div class="form-feedback__input-container">
+            <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
+            <input class="form-feedback__input" placeholder="емейл" type="text"/>
+            <input class="form-feedback__input" placeholder="телефон" type="text"/>
+            <input class="form-feedback__input" placeholder="ваше повідомлення" type="text"/>
+          </div>
           <button class="form-feedback__button" type="button">Надіслати повідомлення</button>
         </form>
       </div>
-      <p class="feedback__text">Продовжуючи ви погоджуєтесь з <a href="#">Політикою Конфіденційності</a></p>
-
+      <p class="feedback__text">Продовжуючи ви погоджуєтесь з <a class="feedback__text-link" href="#">Політикою
+        Конфіденційності</a></p>
     </div>
-    <img class="feedback__img" alt="blue-flower" src="/feedbackForm/flower-blue.png"/>
+    <div class="feedback__img-container">
+    </div>
 
   </section>
 
@@ -37,42 +36,52 @@
 
 <style scoped lang="scss">
 .feedback {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  min-height: 600px;
+  position: relative;
   background-color: #345686;
   border-radius: 30px;
 
+  &__content{
+    margin: 56px 0 30px 0;
+  }
+
   &__container {
     padding: 100px 0;
-    grid-column: 3/10;
+    max-width: 840px;
+    width: 100%;
+    margin: 0 auto;
   }
 
-  &__img {
-    width: 371px;
+  &__img-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url('/feedbackForm/flower-blue.png');
+    background-repeat: no-repeat;
+    background-size: contain; /* или cover, как нужно */
+    width: 371px; /* или подходящий размер */
     height: 384px;
-    grid-column: 10/13;
   }
+  &__header{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap:16px
 
-  &__header {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(11, 1fr);
   }
 
   &__header-title {
-    grid-column: 5/8;
     font-weight: 700;
     font-size: 80px;
     line-height: 1.2;
     letter-spacing: 0;
-    color: white;
+    color: #FFFFFF;
   }
 
   &__header-description {
-    grid-row: 2;
-    grid-column: 4/12;
+    width: 573px;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.5;
     letter-spacing: 0;
     color: white;
@@ -83,18 +92,34 @@
     font-size: 18px;
     line-height: 1.5;
     letter-spacing: 0;
-    color: #FFFFFF;
-    grid-column: 4/10;
+    color: white;
+
+  }
+  &__text-link{
+    font-family: Sarala;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    color: white;
   }
 
 
 }
 
 .form-feedback {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &__input-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
 
   &__input {
     border: 1px solid #899EBC;
@@ -111,7 +136,6 @@
     background-color: #FFFFFF;
     color: #345686;
     padding: 28px 0;
-    grid-column: 1/-1;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;

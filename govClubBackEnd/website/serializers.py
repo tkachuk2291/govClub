@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Hero, MissionSubsection, MissionCard, Direction, DirectionCard, \
-    CourseAnnouncement, CourseAnnouncementCard, Homepage, Mission
+    CourseAnnouncement, CourseAnnouncementCard, Homepage, Mission, HeroSectionCourse, CourseCurator, AboutCourse, \
+    PhotoCourse, CourseDetail
 
 
 class HeroSerializer(serializers.ModelSerializer):
@@ -59,16 +60,46 @@ class CourseAnnouncementSerializer(serializers.ModelSerializer):
 
 
 class HomepageSerializer(serializers.ModelSerializer):
+    hero = HeroSerializer()
     mission = MissionSerializer()
     direction = DirectionSerializer()
     course_announcements = CourseAnnouncementSerializer()
 
     class Meta:
         model= Homepage
-        fields = ['mission' , 'direction' , 'course_announcements']
+        fields = ['hero' , 'mission' , 'direction' , 'course_announcements']
 
 
 
+class HeroSectionCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HeroSectionCourse
+        fields = ['date', 'image', 'section_title']
+
+class CourseCuratorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseCurator
+        fields = ['section_title', 'image', 'description']
+
+class AboutCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutCourse
+        fields = ['section_title', 'description']
+
+class PhotoCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhotoCourse
+        fields = ['image']
+
+class CourseDetailSerializer(serializers.ModelSerializer):
+    hero_section = HeroSectionCourseSerializer()
+    curator = CourseCuratorSerializer()
+    about_course = AboutCourseSerializer()
+    course_photo = PhotoCourseSerializer()
+
+    class Meta:
+        model = CourseDetail
+        fields = ['hero_section', 'curator', 'about_course', 'course_photo']
 
 #
 #
