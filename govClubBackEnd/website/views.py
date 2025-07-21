@@ -1,8 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 
 from .models import Homepage, CourseAnnouncementCard
-from .serializers import HomepageSerializer, CourseDetailSerializer
+from .serializers import HomepageSerializer, CourseDetailSerializer, FeedbackSerializer
 
 
 class HomepageView(APIView):
@@ -13,10 +14,16 @@ class HomepageView(APIView):
 
 
 class CourseCardDetail(APIView):
-    def get(self , request , slug):
+    def get(self, request, slug):
         course_detail = CourseAnnouncementCard.objects.get(slug=slug).course_detail
         serializer = CourseDetailSerializer(course_detail)
-        return Response(serializer.data , status=200)
+        return Response(serializer.data, status=200)
 
-# avtorskyi-kurs-z-komunikatsii/
 
+class Feedback(APIView):
+    def post(self, request):
+        serializer = FeedbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

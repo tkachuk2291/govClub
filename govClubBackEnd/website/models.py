@@ -123,6 +123,7 @@ class CourseCurator(models.Model):
     db_table = 'website_course-curator'
 
     section_title= models.CharField(max_length=255)
+    fullname = models.CharField(max_length=200)
     image = models.URLField()
     description = models.TextField()
     card = models.OneToOneField('CourseDetail', on_delete=models.CASCADE, related_name='curator')

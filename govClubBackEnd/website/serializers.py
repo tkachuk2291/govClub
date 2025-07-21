@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Hero, MissionSubsection, MissionCard, Direction, DirectionCard, \
     CourseAnnouncement, CourseAnnouncementCard, Homepage, Mission, HeroSectionCourse, CourseCurator, AboutCourse, \
-    PhotoCourse, CourseDetail
+    PhotoCourse, CourseDetail, Feedback
 
 
 class HeroSerializer(serializers.ModelSerializer):
@@ -79,7 +79,7 @@ class HeroSectionCourseSerializer(serializers.ModelSerializer):
 class CourseCuratorSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseCurator
-        fields = ['section_title', 'image', 'description']
+        fields = ['section_title', 'fullname', 'image', 'description']
 
 class AboutCourseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -100,6 +100,13 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseDetail
         fields = ['hero_section', 'curator', 'about_course', 'course_photo']
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
+
+
 
 #
 #
