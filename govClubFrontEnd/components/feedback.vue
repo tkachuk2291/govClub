@@ -1,4 +1,37 @@
 <script setup lang="ts">
+const {page} = defineProps(['page'])
+
+
+console.log(page , 'DD')
+const formFeedback = reactive({
+  name: '',
+  email: '',
+  message: '',
+  phone: '',
+  page: page || 'unknown',
+})
+
+
+function resetFrom() {
+  formFeedback.name = '';
+  formFeedback.email = '';
+  formFeedback.message = '';
+  formFeedback.phone = '';
+}
+
+
+async function submitForm() {
+  const response = await fetch('http://localhost:8001/feedback/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(formFeedback),
+  });
+  const data = await response.json();
+  if (response.status == 201) {
+    resetFrom()
+  }
+}
+
 
 </script>
 
@@ -13,14 +46,17 @@
       </div>
 
       <div class="feedback__content">
-        <form class="form-feedback">
+        <form class="form-feedback" @submit.prevent="submitForm">
           <div class="form-feedback__input-container">
-            <input class="form-feedback__input" placeholder="Ім’я" type="text"/>
-            <input class="form-feedback__input" placeholder="емейл" type="text"/>
-            <input class="form-feedback__input" placeholder="телефон" type="text"/>
-            <input class="form-feedback__input" placeholder="ваше повідомлення" type="text"/>
+            <input v-model="formFeedback.name" class="form-feedback__input" placeholder="Ім’я" type="text"/>
+            <input v-model="formFeedback.email" class="form-feedback__input" placeholder="емейл" type="email"/>
+            <input v-model="formFeedback.phone" class="form-feedback__input" placeholder="телефон" type="number"/>
+            <input v-model="formFeedback.message" class="form-feedback__input" placeholder="ваше повідомлення"
+                   type="text"/>
+            <input type="hidden" class="form-feedback__input" v-model="formFeedback.pageLabel"/>
+
           </div>
-          <button class="form-feedback__button" type="button">Надіслати повідомлення</button>
+          <button class="form-feedback__button" type="submit">Надіслати повідомлення</button>
         </form>
       </div>
       <p class="feedback__text">Продовжуючи ви погоджуєтесь з <a class="feedback__text-link" href="#">Політикою
@@ -41,7 +77,7 @@
   background-color: #345686;
   border-radius: 30px;
 
-  &__content{
+  &__content {
     margin: 56px 0 30px 0;
   }
 
@@ -62,11 +98,12 @@
     width: 371px; /* или подходящий размер */
     height: 384px;
   }
-  &__header{
+
+  &__header {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap:16px
+    gap: 16px
 
   }
 
@@ -95,7 +132,8 @@
     color: white;
 
   }
-  &__text-link{
+
+  &__text-link {
     font-family: Sarala;
     font-weight: 400;
     font-size: 18px;
@@ -123,12 +161,22 @@
 
   &__input {
     border: 1px solid #899EBC;
+    color: white;
     border-radius: 30px;
     width: 400px;
     height: 60px;
     box-sizing: border-box;
     background-color: transparent;
-    padding: 16px 0 17px 16px
+    padding: 16px 0 17px 16px;
+    //outline: none;
+    &:focus {
+      outline: none;
+      border: 1px solid white;
+    }
+
+    &::placeholder {
+      color: #899EBC;
+    }
   }
 
   &__button {
