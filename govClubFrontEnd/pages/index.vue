@@ -1,103 +1,108 @@
 <script setup lang="ts">
 
 
-const {data: sections, pending, error} = await useFetch('http://localhost:8001/home-page/', {
+const {data: sections, pending, error} = await useFetch('http://localhost:8004/home-page/', {
   server: true,
   method: 'GET',
   headers: {
     accept: 'application/json'
   }
 })
+import {useRouter, useRoute} from 'vue-router'
 
+const router = useRouter()
+const route = useRoute()
 
 </script>
 <template>
   <header class="header">
-    <main class="main width-lg">
-      <section class="hero-section">
-        <div class="hero-content-top width-md">
-          <h1 class="hero-content-top__title hero-content-top__item1">{{ sections.hero.title_part1 }}</h1>
-          <h1 class="hero-content-top__title hero-content-top__item2">{{ sections.hero.title_part2 }}</h1>
-          <div class="hero-content-top__container hero-content-top__item3">
-            <p class="hero-content-top__text">{{ sections.hero.description }}</p>
-            <a href="#" class="hero-content-top__button">Стати партнером</a>
-          </div>
+    <section class="hero-section">
+      <div class="hero-content-top width-md">
+        <h1 class="hero-content-top__title hero-content-top__item1">{{ sections.hero.title_part1 }}</h1>
+        <h1 class="hero-content-top__title hero-content-top__item2">{{ sections.hero.title_part2 }}</h1>
+        <div class="hero-content-top__container hero-content-top__item3">
+          <p class="hero-content-top__text">{{ sections.hero.description }}</p>
+          <a href="#" class="hero-content-top__button">Стати партнером</a>
         </div>
-        <div class="hero-content-bottom">
-          <div class="hero-content-bottom__wrapper-img-top">
-            <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-bottom.svg"/>
-          </div>
-          <div class="hero-content-bottom__wrapper">
-            <div class="hero-content-bottom__header-container">
-              <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">
-                <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>
-                <p class="hero-content-bottom__header-description">
-                  {{ missionSubsection.description }}
-                </p>
-              </div>
-
+      </div>
+      <div class="hero-content-bottom">
+        <div class="hero-content-bottom__wrapper-img-top">
+          <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-bottom.svg"/>
+        </div>
+        <div class="hero-content-bottom__wrapper">
+          <div class="hero-content-bottom__header-container">
+            <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">
+              <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>
+              <p class="hero-content-bottom__header-description">
+                {{ missionSubsection.description }}
+              </p>
             </div>
-            <div class="hero-content-bottom__content-container">
-              <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">
-                <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>
-                <p class="hero-content-bottom__description">{{ missionCard.description }}</p>
-              </div>
+
+          </div>
+          <div class="hero-content-bottom__content-container">
+            <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">
+              <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>
+              <p class="hero-content-bottom__description">{{ missionCard.description }}</p>
             </div>
           </div>
-          <div class="hero-content-bottom__wrapper-img">
-            <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-top.svg"/>
-          </div>
+        </div>
+        <div class="hero-content-bottom__wrapper-img">
+          <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-top.svg"/>
+        </div>
 
-        </div>
-      </section>
-      <section class="directions width-md">
-        <h2 class="directions__title">{{ sections.section_title }}</h2>
-        <div class="directions__content">
-          <div class="directions__card" v-for="directionsCard in sections.direction.direction_cards">
-            <div class="directions__card-text-container">
-              <h3 class="directions__card-title">{{ directionsCard.title }}</h3>
-              <p class="directions__card-text">{{ directionsCard.description }}</p>
-            </div>
-            <a class="directions__card-button">Стати партнером</a>
-          </div>
-        </div>
-      </section>
-      <section class="course-announcements width-md">
-        <div class="course-announcements__header">
-          <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>
-          <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>
-        </div>
-        <div class="course-announcements__content">
-
-          <div class="course-announcements__card"
-               v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
-            <NuxtLink class="course-announcements__card-link" :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">
-              <div class="course-announcements__card-header">
-                <img
-                    class="course-announcements__card-img"
-                    alt="course"
-                    :src="courseAnnouncementsCard.image"
-                />
-                <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
-              </div>
-              <div class="course-announcements__card-content">
-                <div class="course-announcements__card-info">
-                  <p class="course-announcements__card-info-name">Лектор: <strong
-                      class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
-                  <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
-                </div>
-                <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
-                <div class="course-announcements__card-button-container">
-                  <a class="course-announcements__card-button course-announcements__card-button--blue">Записатися</a>
-                  <a class="course-announcements__card-button course-announcements__card-button--white">Докладніше</a>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
   </header>
+  <main class="main width-lg">
+    <section class="directions width-md" id="directions">
+      <h2 class="directions__title">{{ sections.direction.section_title }}</h2>
+      <div class="directions__content">
+        <div class="directions__card" v-for="directionsCard in sections.direction.direction_cards">
+          <div class="directions__card-text-container">
+            <h3 class="directions__card-title">{{ directionsCard.title }}</h3>
+            <p class="directions__card-text">{{ directionsCard.description }}</p>
+          </div>
+          <a class="directions__card-button">Стати партнером</a>
+        </div>
+      </div>
+    </section>
+    <section class="course-announcements width-md" id="course-announcements">
+      <div class="course-announcements__header">
+        <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>
+        <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>
+      </div>
+      <div class="course-announcements__content">
+
+        <div class="course-announcements__card"
+             v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
+          <NuxtLink class="course-announcements__card-link"
+                    :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">
+            <div class="course-announcements__card-header">
+              <img
+                  class="course-announcements__card-img"
+                  alt="course"
+                  :src="courseAnnouncementsCard.image"
+              />
+              <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
+            </div>
+            <div class="course-announcements__card-content">
+              <div class="course-announcements__card-info">
+                <p class="course-announcements__card-info-name">Лектор: <strong
+                    class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
+                <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
+              </div>
+              <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
+              <div class="course-announcements__card-button-container">
+                <a class="course-announcements__card-button course-announcements__card-button--blue">Записатися</a>
+                <a class="course-announcements__card-button course-announcements__card-button--white">Докладніше</a>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+  </main>
+
 </template>
 
 <style lang="scss" scoped>
@@ -111,6 +116,7 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8001/h
   display: flex;
   flex-direction: column;
   gap: 160px;
+  margin-top: 70px;
 }
 
 .hero-section {
@@ -184,7 +190,7 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8001/h
   border-radius: 30px;
   display: flex;
   background: #FFF9E5;
-  width: 100%;
+  width: 98%;
   box-sizing: border-box;
 
   .flex-group-base {
@@ -415,10 +421,10 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8001/h
     width: 100%;
   }
 
-  &__card-link{
+  &__card-link {
     text-decoration: none;
     color: black;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 10px;
   }

@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-from .models import Homepage, CourseAnnouncementCard
-from .serializers import HomepageSerializer, CourseDetailSerializer, FeedbackSerializer
+from .models import Homepage, CourseAnnouncementCard, Team
+from .serializers import HomepageSerializer, CourseDetailSerializer, FeedbackSerializer, TeamSerializer
 
 
 class HomepageView(APIView):
@@ -27,3 +27,10 @@ class Feedback(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TeamView(APIView):
+    def get(self, request):
+        team = Team.objects.first()
+        print(team , 'DDD')
+        serializer = TeamSerializer(team)
+        return Response(serializer.data, status=status.HTTP_200_OK)

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Hero, MissionSubsection, MissionCard, Direction, DirectionCard, \
     CourseAnnouncement, CourseAnnouncementCard, Homepage, Mission, HeroSectionCourse, CourseCurator, AboutCourse, \
-    PhotoCourse, CourseDetail, Feedback
+    PhotoCourse, CourseDetail, Feedback, TeamHeroSection, TeamInfo, TeamMemberCard, Team
 
 
 class HeroSerializer(serializers.ModelSerializer):
@@ -107,37 +107,26 @@ class FeedbackSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TeamHeroSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamHeroSection
+        fields = ['title', 'image']
 
-#
-#
-# class Direction(models.Model):
-#     homepage = models.ForeignKey(Homepage, on_delete=models.CASCADE, related_name='direction_sections')
-#     section_title = models.CharField(max_length=255)
-#
-#
-# class DirectionCard(models.Model):
-#     text = models.CharField(max_length=255)
-#     description = models.TextField()
-#     direction_section = models.ForeignKey(Direction, on_delete=models.CASCADE, related_name='cards')
-#     class Meta:
-#         db_table = 'website_direction-card'
-#
-#
-# class CourseAnnouncement(models.Model):
-#     description = models.TextField()
-#     course_section = models.ForeignKey(Homepage, on_delete=models.CASCADE, related_name='course_announcements')
-#
-#     class Meta:
-#         db_table = 'website_course-announcement'
-#
-#
-# class CourseAnnouncementCard(models.Model):
-#     text = models.CharField(max_length=255)
-#     description = models.TextField()
-#     course_announcement = models.ForeignKey(CourseAnnouncement, on_delete=models.CASCADE, related_name='cards')
-#
-#     class Meta:
-#         db_table = 'website_course-announcement-card'
-#
+class TeamInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamInfo
+        fields = '__all__'
 
+class TeamMemberCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeamMemberCard
+        fields = '__all__'
 
+class TeamSerializer(serializers.ModelSerializer):
+    hero_section = TeamHeroSectionSerializer()
+    team_info = TeamInfoSerializer(source='info')
+    team_member_cards = TeamMemberCardSerializer(source='members', many=True)
+
+    class Meta:
+        model = Team
+        fields = ['hero_section', 'team_info', 'team_member_cards']

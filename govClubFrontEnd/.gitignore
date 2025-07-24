@@ -1,24 +1,23 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
 
-# Node dependencies
-node_modules
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Node modules and packages
+node_modules/
+package-lock.json
+
+
+# Django SQLite database
+*.sqlite3
+
+# Nuxt / Vue build folders
+.nuxt/
+dist/
 
 # Logs
-logs
 *.log
-
-# Misc
-.DS_Store
-.fleet
-.idea
-
-# Local env files
-.env
-.env.*
-!.env.example

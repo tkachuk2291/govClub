@@ -33,7 +33,7 @@ console.log(props.curatorCardProps.section_title , 'FFF')
   display: flex;
   flex-direction: column;
   gap: 30px;
-  max-width: 400px;
+  width: 400px;
 
   &__header-text {
     font-weight: 700;

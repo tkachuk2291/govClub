@@ -6,10 +6,11 @@
   <header class="header width-md">
     <img class="header__img" alt="HeaderLogo" src="/header/headerLogo.svg"/>
     <nav class="header__nav">
-      <a class="header__link" href="#">Напрямки</a>
-      <a class="header__link" href="#">Курси</a>
-      <a class="header__link" href="#">Команда</a>
-      <a class="header__link" href="#">Контакти</a>
+      <NuxtLink :to="{ path: '/', hash: '#directions' }" class="header__link">Напрямки</NuxtLink>
+      <NuxtLink :to="{ path: '/', hash: '#course-announcements' }" class="header__link">Курси</NuxtLink>
+      <NuxtLink :to="{ path: 'team/'}" class="header__link">Команда</NuxtLink>
+      <NuxtLink :to="{ path: '/' , hash: '#contacts'}" class="header__link">Контакти</NuxtLink>
+
     </nav>
     <div class="header__container">
       <div class="header__languageContainer">

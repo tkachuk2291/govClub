@@ -6,7 +6,7 @@ const route = useRoute()
 const slug = route.params.slug
 
 
-const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001/course-card-detail/${slug}`, {
+const {data: detailPage, pending, error} = await useFetch(`http://localhost:8004/course-card-detail/${slug}`, {
   server: true,
   method: 'GET',
   headers: {
@@ -14,26 +14,33 @@ const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001
   }
 })
 
-// const curatorCardProps = computed(() => ({
-//   section_title: detailPage.value?.curator?.section_title,
-//   image: detailPage.value?.curator?.image,
-//   title: detailPage.value?.curator?.title,
-//   text: detailPage.value?.curator?.text
-// }))
+const router = useRouter()
+
+function goBack() {
+  navigateTo('/', { replace: true })
+}
 
 </script>
 
 <template>
+  <div
+      class="navigation width-md"
+      v-if="slug"
+      @click="goBack"
+  >
+    <img class="navigation__img" alt="navigation arrow" src="/navigation/arrow_back.png"/>
+    <p class="navigation__title">Назад</p>
+  </div>
   <main class="main width-md">
     <section class="hero width-sm">
       <div class="hero-content-top">
         <div class="course-card">
           <div class="course-card__header">
             <div class="course-card__header-container">
-              <h2 class="course-card__date">{{detailPage.hero_section.date}}</h2>
+              <h2 class="course-card__date">{{ detailPage.hero_section.date }}</h2>
               <a href="#" class="course-card__button">Записатися</a>
             </div>
-            <h3 class="course-card__title">{{detailPage.hero_section.section_title}}</h3>
+            <h3 class="course-card__title">{{ detailPage.hero_section.section_title }}</h3>
           </div>
           <div class="course-card__content">
             <img
@@ -48,28 +55,48 @@ const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001
 
       </div>
       <div class="hero-content-bottom">
-        <CuratorCard v-if="detailPage?.curator" :curatorCardProps="detailPage.curator" />
+        <CuratorCard v-if="detailPage?.curator" :curatorCardProps="detailPage.curator"/>
       </div>
     </section>
 
     <!--    <section class="schedule width-sm"></section>-->
     <section class="info width-sm">
-      <h2 class="info__title">{{detailPage.about_course.section_title}}</h2>
-      <p class="info__text">{{detailPage.about_course.description}}</p>
+      <h2 class="info__title">{{ detailPage.about_course.section_title }}</h2>
+      <p class="info__text">{{ detailPage.about_course.description }}</p>
     </section>
     <section class="conference width-sm">
 
-            <img class="conference__img"
-                 :src="detailPage.course_photo.image"
-                 alt="conference"/>
+      <img class="conference__img"
+           :src="detailPage.course_photo.image"
+           alt="conference"/>
     </section>
     <section class="feedback">
-      <feedback :page="slug" />
+      <feedback :page="slug"/>
     </section>
   </main>
 </template>
 
 <style scoped lang="scss">
+
+.navigation {
+  cursor: pointer;
+  margin-top: 16px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 12px;
+
+  &__title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+
+  &__img {
+    width: 24px;
+    height: 24px;
+  }
+}
 
 .main {
   display: flex;
@@ -138,7 +165,6 @@ const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001
 }
 
 
-
 .info {
   display: flex;
   flex-direction: column;
@@ -161,7 +187,7 @@ const {data: detailPage, pending, error} = await useFetch(`http://localhost:8001
 
 .conference {
   &__img {
-    border-radius:30px;
+    border-radius: 30px;
     width: 840px;
   }
 }

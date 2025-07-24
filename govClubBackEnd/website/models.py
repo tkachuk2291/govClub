@@ -169,7 +169,38 @@ class Feedback(models.Model):
         verbose_name_plural = "14. Feedback"
 
 
+class Team(models.Model):
+    pass
 
 
+class TeamHeroSection(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.URLField()
+    team = models.OneToOneField(Team, on_delete=models.CASCADE, related_name='hero_section')
 
+    class Meta:
+        db_table = 'website_team-hero-section'
+        verbose_name = "15. TeamHeroSection"
+        verbose_name_plural = "15. TeamHeroSection"
 
+class TeamInfo(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.URLField()
+    team = models.OneToOneField(Team, on_delete=models.CASCADE, related_name='info')
+
+    class Meta:
+        db_table = 'website_team-info'
+        verbose_name = "16. TeamInfo"
+        verbose_name_plural = "16. TeamInfo"
+
+class TeamMemberCard(models.Model):
+    image = models.URLField()
+    fullname = models.CharField(max_length=255)
+    description = models.TextField()
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='members')
+
+    class Meta:
+        db_table = 'website_team-member-card'
+        verbose_name = "17. TeamMemberCard"
+        verbose_name_plural = "17. TeamMemberCard"
