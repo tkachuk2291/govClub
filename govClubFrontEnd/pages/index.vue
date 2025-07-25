@@ -26,29 +26,24 @@ const route = useRoute()
         </div>
       </div>
       <div class="hero-content-bottom">
-        <div class="hero-content-bottom__wrapper-img-top">
-          <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-bottom.svg"/>
-        </div>
-        <div class="hero-content-bottom__wrapper">
-          <div class="hero-content-bottom__header-container">
-            <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">
-              <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>
-              <p class="hero-content-bottom__header-description">
-                {{ missionSubsection.description }}
-              </p>
-            </div>
+        <div class="hero-content-bottom__wrapper-img-top"></div>
+        <div class="hero-content-bottom__wrapper-img-bottom"></div>
+        <div class="hero-content-bottom__header-container">
+          <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">
+            <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>
+            <p class="hero-content-bottom__header-description">
+              {{ missionSubsection.description }}
+            </p>
+          </div>
 
-          </div>
-          <div class="hero-content-bottom__content-container">
-            <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">
-              <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>
-              <p class="hero-content-bottom__description">{{ missionCard.description }}</p>
-            </div>
+        </div>
+        <div class="hero-content-bottom__content-container">
+          <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">
+            <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>
+            <p class="hero-content-bottom__description">{{ missionCard.description }}</p>
           </div>
         </div>
-        <div class="hero-content-bottom__wrapper-img">
-          <img class="hero-content-bottom__img" alt="flower" src="/hero-content-bottom/flower-top.svg"/>
-        </div>
+
 
       </div>
     </section>
@@ -188,10 +183,11 @@ const route = useRoute()
 
 .hero-content-bottom {
   border-radius: 30px;
-  display: flex;
+  position: relative;
   background: #FFF9E5;
   width: 98%;
   box-sizing: border-box;
+  height: 100%;
 
   .flex-group-base {
     display: flex;
@@ -235,6 +231,7 @@ const route = useRoute()
   &__img {
     width: 371px;
     max-height: 384px;
+    position: absolute;
 
   }
 
@@ -242,7 +239,10 @@ const route = useRoute()
   &__header-container {
     display: flex;
     gap: 77px;
-    margin-bottom: 100px;
+    max-width: 1300px;
+    margin: 0 auto 100px auto;
+    padding-top:140px;
+
   }
 
   &__header {
@@ -265,16 +265,34 @@ const route = useRoute()
 
 
   &__wrapper-img-top {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: flex-end;
+    background-image: url('/hero-content-bottom/flower-bottom.png');
+    background-repeat: no-repeat;
+    width: 371px;
+    height: 384px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
 
   }
+
+  &__wrapper-img-bottom {
+    background-image: url('/hero-content-bottom/flower-top.png');
+    background-repeat: no-repeat;
+    width: 371px;
+    height: 384px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+  }
+
 
   &__content-container {
     display: flex;
     flex-direction: column;
+    max-width: 1384px;
+    margin: 0 auto;
   }
 
   &__sections {
