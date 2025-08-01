@@ -11,7 +11,6 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8004/h
 import {useRouter, useRoute} from 'vue-router'
 
 const router = useRouter()
-const route = useRoute()
 
 </script>
 <template>
@@ -25,82 +24,84 @@ const route = useRoute()
           <a href="#" class="hero-content-top__button">Стати партнером</a>
         </div>
       </div>
-      <div class="hero-content-bottom">
-        <div class="hero-content-bottom__wrapper-img-top"></div>
-        <div class="hero-content-bottom__wrapper-img-bottom"></div>
-        <div class="hero-content-bottom__header-container">
-          <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">
-            <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>
-            <p class="hero-content-bottom__header-description">
-              {{ missionSubsection.description }}
-            </p>
-          </div>
+      <!--      <div class="hero-content-bottom">-->
+      <!--        <div class="hero-content-bottom__wrapper-img-top"></div>-->
+      <!--        <div class="hero-content-bottom__wrapper-img-bottom"></div>-->
+      <!--        <div class="hero-content-bottom__header-container">-->
+      <!--          <div class="hero-content-bottom__header" v-for="missionSubsection in sections.mission.mission_subsection">-->
+      <!--            <h2 class="hero-content-bottom__header-title">{{ missionSubsection.title }}</h2>-->
+      <!--            <p class="hero-content-bottom__header-description">-->
+      <!--              {{ missionSubsection.description }}-->
+      <!--            </p>-->
+      <!--          </div>-->
 
-        </div>
-        <div class="hero-content-bottom__content-container">
-          <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">
-            <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>
-            <p class="hero-content-bottom__description">{{ missionCard.description }}</p>
-          </div>
-        </div>
-
-
-      </div>
+      <!--        </div>-->
+      <!--        <div class="hero-content-bottom__content-container">-->
+      <!--          <div class="hero-content-bottom__item" v-for="missionCard in sections.mission.mission_card">-->
+      <!--            <h3 class="hero-content-bottom__title">{{ missionCard.title }}</h3>-->
+      <!--            <p class="hero-content-bottom__description">{{ missionCard.description }}</p>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </section>
   </header>
-  <main class="main width-lg">
-    <section class="directions width-md" id="directions">
-      <h2 class="directions__title">{{ sections.direction.section_title }}</h2>
-      <div class="directions__content">
-        <div class="directions__card" v-for="directionsCard in sections.direction.direction_cards">
-          <div class="directions__card-text-container">
-            <h3 class="directions__card-title">{{ directionsCard.title }}</h3>
-            <p class="directions__card-text">{{ directionsCard.description }}</p>
-          </div>
-          <a class="directions__card-button">Стати партнером</a>
-        </div>
-      </div>
-    </section>
-    <section class="course-announcements width-md" id="course-announcements">
-      <div class="course-announcements__header">
-        <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>
-        <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>
-      </div>
-      <div class="course-announcements__content">
+  <!--  <main class="main width-lg">-->
+  <!--    <section class="directions width-md" id="directions">-->
+  <!--      <h2 class="directions__title">{{ sections.direction.section_title }}</h2>-->
+  <!--      <div class="directions__content">-->
+  <!--        <div class="directions__card" v-for="directionsCard in sections.direction.direction_cards">-->
+  <!--          <div class="directions__card-text-container">-->
+  <!--            <h3 class="directions__card-title">{{ directionsCard.title }}</h3>-->
+  <!--            <p class="directions__card-text">{{ directionsCard.description }}</p>-->
+  <!--          </div>-->
+  <!--          <a class="directions__card-button">Стати партнером</a>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </section>-->
+  <!--    <section class="course-announcements width-md" id="course-announcements">-->
+  <!--      <div class="course-announcements__header">-->
+  <!--        <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>-->
+  <!--        <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>-->
+  <!--      </div>-->
+  <!--      <div class="course-announcements__content">-->
 
-        <div class="course-announcements__card"
-             v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
-          <NuxtLink class="course-announcements__card-link"
-                    :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">
-            <div class="course-announcements__card-header">
-              <img
-                  class="course-announcements__card-img"
-                  alt="course"
-                  :src="courseAnnouncementsCard.image"
-              />
-              <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
-            </div>
-            <div class="course-announcements__card-content">
-              <div class="course-announcements__card-info">
-                <p class="course-announcements__card-info-name">Лектор: <strong
-                    class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
-                <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
-              </div>
-              <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
-              <div class="course-announcements__card-button-container">
-                <a class="course-announcements__card-button course-announcements__card-button--blue">Записатися</a>
-                <a class="course-announcements__card-button course-announcements__card-button--white">Докладніше</a>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!--        <div class="course-announcements__card"-->
+  <!--             v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">-->
+  <!--          <NuxtLink class="course-announcements__card-link"-->
+  <!--                    :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">-->
+  <!--            <div class="course-announcements__card-header">-->
+  <!--              <img-->
+  <!--                  class="course-announcements__card-img"-->
+  <!--                  alt="course"-->
+  <!--                  :src="courseAnnouncementsCard.image"-->
+  <!--              />-->
+  <!--              <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>-->
+  <!--            </div>-->
+  <!--            <div class="course-announcements__card-content">-->
+  <!--              <div class="course-announcements__card-info">-->
+  <!--                <p class="course-announcements__card-info-name">Лектор: <strong-->
+  <!--                    class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>-->
+  <!--                <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>-->
+  <!--              </div>-->
+  <!--              <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>-->
+  <!--              <div class="course-announcements__card-button-container">-->
+  <!--                <a class="course-announcements__card-button course-announcements__card-button&#45;&#45;blue">Записатися</a>-->
+  <!--                <a class="course-announcements__card-button course-announcements__card-button&#45;&#45;white">Докладніше</a>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </NuxtLink>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </section>-->
+  <!--  </main>-->
 
 </template>
 
 <style lang="scss" scoped>
+$mobile: "(max-width: 768px)";
+$tablet: "(max-width: 1024px)";
+
+
 .header {
   &__title {
     color: blueviolet;
@@ -124,22 +125,36 @@ const route = useRoute()
 
 .hero-content-top {
   display: grid;
+  width: 100%;
   grid-template-rows: auto;
-  grid-template-columns: repeat(13, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-auto-flow: column;
+
+  @media #{$mobile} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
 
   &__item1 {
     grid-column: 1 / 13;
+    @media #{$mobile} {
+      grid-column: 1 / 2;
+    }
   }
 
   &__item2 {
     grid-column: 4 / 13;
     margin-bottom: 50px;
+    @media #{$mobile} {
+      grid-column: 1 / -1;
+    }
   }
 
   &__item3 {
     grid-column: 1 / 14;
+    @media #{$mobile} {
+      grid-column: 1 / 2;
+    }
   }
 
   &__container {
@@ -147,12 +162,22 @@ const route = useRoute()
     align-items: center;
     justify-content: center;
     gap: 150px;
+    @media #{$mobile} {
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: 0;
+    }
   }
 
   &__title {
     font-weight: 700;
     font-size: 80px;
     line-height: 1.2;
+    @media #{$mobile} {
+      font-size: 32px;
+      letter-spacing: 0;
+    }
   }
 
   &__button {
@@ -167,6 +192,11 @@ const route = useRoute()
     display: flex;
     align-items: center;
     justify-content: center;
+    @media #{$mobile} {
+      width: 343px;
+      height: 70px;
+      padding: 23px;
+    }
   }
 
   &__text {
@@ -177,8 +207,6 @@ const route = useRoute()
     letter-spacing: 0;
 
   }
-
-
 }
 
 .hero-content-bottom {
@@ -241,7 +269,7 @@ const route = useRoute()
     gap: 77px;
     max-width: 1300px;
     margin: 0 auto 100px auto;
-    padding-top:140px;
+    padding-top: 140px;
 
   }
 
