@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import {useMobileMenu} from '@/composables/useMobileMenu'
 
+const {toggle, isOpen} = useMobileMenu()
 </script>
 
 <template>
@@ -9,9 +11,11 @@
       <button class="header__button">
         <a class="header__button-link" href="#">Записатися</a>
       </button>
-      <img alt="menu" src="../public/headerMobile/menu.svg" />
+      <a href="#" class="header__button-menu" @click="toggle">
+        <img v-show="!isOpen"  src="../public/headerMobile/menu.svg" alt="menu"/>
+        <img	v-show="isOpen" src="../public/headerMobile/isOpenMenu.svg" alt="menu1"/>
+      </a>
     </div>
-
   </header>
 </template>
 
@@ -43,13 +47,20 @@
   }
 
 
-  &__container{
+  &__container {
     display: flex;
     align-items: center;
     gap: 20px;
   }
 
+  &__button-menu {
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+  }
+
 
 }
+
 
 </style>

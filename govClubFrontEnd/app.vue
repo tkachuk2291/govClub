@@ -1,7 +1,8 @@
 <template>
   <div>
-    <Header v-if="currentWidth === 'tablet' || currentWidth === 'desktop' "></Header>
-    <HeaderMobile v-if="currentWidth === 'mobile'"></HeaderMobile>
+    <Header v-show="currentWidth === 'tablet' || currentWidth === 'desktop' "></Header>
+    <HeaderMobile v-show="currentWidth === 'mobile'"></HeaderMobile>
+    <asideMenu />
     <NuxtPage/>
     <NuxtRouteAnnouncer/>
   </div>

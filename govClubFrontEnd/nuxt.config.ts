@@ -10,7 +10,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/google-fonts',
-    '@nuxtjs/device',
   ],
 
   googleFonts: {

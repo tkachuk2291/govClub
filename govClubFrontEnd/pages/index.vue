@@ -61,41 +61,41 @@ const router = useRouter()
             </div>
           </div>
         </section>
-<!--        <section class="course-announcements width-md" id="course-announcements">-->
-<!--          <div class="course-announcements__header">-->
-<!--            <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>-->
-<!--            <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>-->
-<!--          </div>-->
-<!--          <div class="course-announcements__content">-->
+        <section class="course-announcements width-md" id="course-announcements">
+          <div class="course-announcements__header">
+            <h2 class="course-announcements__header-title">{{ sections.course_announcements.section_title }}</h2>
+            <a class="course-announcements__header-button" href="#">Дивитися всі анонси</a>
+          </div>
+          <div class="course-announcements__content">
 
-<!--            <div class="course-announcements__card"-->
-<!--                 v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">-->
-<!--              <NuxtLink class="course-announcements__card-link"-->
-<!--                        :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">-->
-<!--                <div class="course-announcements__card-header">-->
-<!--                  <img-->
-<!--                      class="course-announcements__card-img"-->
-<!--                      alt="course"-->
-<!--                      :src="courseAnnouncementsCard.image"-->
-<!--                  />-->
-<!--                  <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>-->
-<!--                </div>-->
-<!--                <div class="course-announcements__card-content">-->
-<!--                  <div class="course-announcements__card-info">-->
-<!--                    <p class="course-announcements__card-info-name">Лектор: <strong-->
-<!--                        class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>-->
-<!--                    <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>-->
-<!--                  </div>-->
-<!--                  <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>-->
-<!--                  <div class="course-announcements__card-button-container">-->
-<!--                    <a class="course-announcements__card-button course-announcements__card-button&#45;&#45;blue">Записатися</a>-->
-<!--                    <a class="course-announcements__card-button course-announcements__card-button&#45;&#45;white">Докладніше</a>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </NuxtLink>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </section>-->
+            <div class="course-announcements__card"
+                 v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
+              <NuxtLink class="course-announcements__card-link"
+                        :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">
+                <div class="course-announcements__card-header">
+                  <img
+                      class="course-announcements__card-img"
+                      alt="course"
+                      :src="courseAnnouncementsCard.image"
+                  />
+                  <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
+                </div>
+                <div class="course-announcements__card-content">
+                  <div class="course-announcements__card-info">
+                    <p class="course-announcements__card-info-name">Лектор: <strong
+                        class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
+                    <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
+                  </div>
+                  <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
+                  <div class="course-announcements__card-button-container">
+                    <a class="course-announcements__card-button course-announcements__card-button--blue">Записатися</a>
+                    <a class="course-announcements__card-button course-announcements__card-button--white">Докладніше</a>
+                  </div>
+                </div>
+              </NuxtLink>
+            </div>
+          </div>
+        </section>
       </main>
   </div>
 </template>
@@ -123,6 +123,9 @@ $desktop: "(min-width: 1024px)";
   flex-direction: column;
   gap: 160px;
   margin-top: 70px;
+  @media #{$mobile} {
+    gap: 70px;
+  }
 }
 
 .hero-section {
@@ -131,6 +134,9 @@ $desktop: "(min-width: 1024px)";
   gap: 100px;
   align-items: center;
   justify-content: center;
+  @media #{$mobile} {
+    gap: 70px;
+  }
 }
 
 .hero-content-top {
@@ -445,6 +451,12 @@ $desktop: "(min-width: 1024px)";
     align-items: center;
     //min-height: 316px;
     justify-content: space-between;
+    box-sizing: border-box;
+
+    @media #{$mobile} {
+      min-height: 280px;
+      justify-content: flex-start;
+    }
 
     &:nth-child(odd) {
       background-color: #C5DAF9;
@@ -456,6 +468,7 @@ $desktop: "(min-width: 1024px)";
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex-grow: 1;
   }
 
   &__card-title {
@@ -489,6 +502,10 @@ $desktop: "(min-width: 1024px)";
     letter-spacing: 0;
     text-align: center;
     margin-top: auto;
+    @media #{$mobile} {
+      color:#345686;
+    }
+
   }
 
 
@@ -502,6 +519,10 @@ $desktop: "(min-width: 1024px)";
   display: flex;
   flex-direction: column;
   gap: 60px;
+  @media #{$mobile} {
+    gap: 32px;
+  }
+
 
   &__header {
     display: flex;
@@ -514,7 +535,9 @@ $desktop: "(min-width: 1024px)";
     font-size: 80px;
     line-height: 1.2;
     letter-spacing: 0;
-
+    @media #{$mobile} {
+      font-size: 32px;
+    }
   }
 
   &__header-button {
@@ -527,6 +550,9 @@ $desktop: "(min-width: 1024px)";
     color: #345686;
     border: 1px solid #345686;
     text-decoration: none;
+    @media #{$mobile} {
+      display: none;
+    }
   }
 
   &__card {
@@ -534,6 +560,9 @@ $desktop: "(min-width: 1024px)";
     flex-direction: column;
     gap: 10px;
     min-height: 601px;
+    @media #{$mobile} {
+      min-height: 0;
+    }
   }
 
   &__card-title {
@@ -541,6 +570,11 @@ $desktop: "(min-width: 1024px)";
     font-size: 32px;
     line-height: 1.5;
     letter-spacing: 0;
+    @media #{$mobile} {
+      font-size: 22px;
+      line-height: 1.2;
+      max-width: 343px;
+    }
 
   }
 
@@ -566,6 +600,10 @@ $desktop: "(min-width: 1024px)";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+    @media #{$mobile} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
   }
 
   &__card-header {
@@ -597,8 +635,11 @@ $desktop: "(min-width: 1024px)";
   &__card-text {
     font-weight: 400;
     font-size: 18px;
-    line-height: 150%;
+    line-height: 1.5;
     letter-spacing: 0;
+    @media #{$mobile} {
+      font-size: 18px;
+    }
   }
 
   &__card-button-container {
@@ -615,6 +656,10 @@ $desktop: "(min-width: 1024px)";
     align-items: center;
     justify-content: center;
     border: 1px solid #345686;
+    @media #{$mobile} {
+      height: 46px;
+      width: 100%;
+    }
   }
 
   &__card-button--blue {
