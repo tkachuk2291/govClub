@@ -21,7 +21,7 @@ function resetFrom() {
 
 
 async function submitForm() {
-  const response = await fetch('http://localhost:8004/feedback/', {
+  const response = await fetch('http://localhost:8005/feedback/', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(formFeedback),

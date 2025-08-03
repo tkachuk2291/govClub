@@ -1,11 +1,15 @@
 <template>
   <div>
-    <Header></Header>
-    <NuxtPage />
-    <NuxtRouteAnnouncer />
+    <Header v-if="currentWidth === 'tablet' || currentWidth === 'desktop' "></Header>
+    <HeaderMobile v-if="currentWidth === 'mobile'"></HeaderMobile>
+    <NuxtPage/>
+    <NuxtRouteAnnouncer/>
   </div>
 </template>
 
 <script setup lang="ts">
-import Home from "~/pages/index.vue";
+  import Header from "~/components/Header.vue";
+  import {useWindowSizeSelect} from "~/composables/useScreenSize";
+  const currentWidth = useWindowSizeSelect()
+
 </script>

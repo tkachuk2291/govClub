@@ -10,26 +10,40 @@ body, html {
   margin: 0 auto;
 }
 
-
-.width-md {
-  max-width: 1280px;
-  margin: 0 auto;
-  box-sizing: border-box;
-
-  @media #{$tablet} {
-    max-width: 1024px;
-    padding: 0 24px;
-  }
-
-  @media #{$mobile} {
-    max-width: 375px;
-    padding: 0 16px;
-
-  }
-}
-
-
 .width-lg {
   width: 1840px;
   margin: 0 auto;
+  @media #{$mobile} {
+    max-width: 100%;
+    //padding: 0 16px;
+
+  }
+  //  @media #{$tablet} {
+  //  max-width: 1024px;
+  //  //padding: 0 24px;
+  //}
+
+
+
 }
+
+.width-md {
+  max-width: 1480px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  //padding: 0 32px;
+
+  @media #{$tablet} {
+    max-width: 1024px;
+    //padding: 0 24px;
+  }
+
+  @media #{$mobile} {
+    max-width: 768px;
+    //padding: 0 16px;
+
+  }
+}
+
+
+

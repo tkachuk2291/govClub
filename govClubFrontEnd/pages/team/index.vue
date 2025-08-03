@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const {data: sections, pending, error} = await useFetch('http://localhost:8004/team/', {
+const {data: sections, pending, error} = await useFetch('http://localhost:8005/team/', {
   server: true,
   method: 'GET',
   headers: {

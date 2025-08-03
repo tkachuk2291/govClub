@@ -6,7 +6,7 @@ const route = useRoute()
 const slug = route.params.slug
 
 
-const {data: detailPage, pending, error} = await useFetch(`http://localhost:8004/course-card-detail/${slug}`, {
+const {data: detailPage, pending, error} = await useFetch(`http://localhost:8005/course-card-detail/${slug}`, {
   server: true,
   method: 'GET',
   headers: {
