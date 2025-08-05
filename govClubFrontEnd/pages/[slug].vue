@@ -17,7 +17,7 @@ const {data: detailPage, pending, error} = await useFetch(`http://localhost:8005
 const router = useRouter()
 
 function goBack() {
-  navigateTo('/', { replace: true })
+  navigateTo('/', {replace: true})
 }
 
 </script>
@@ -60,19 +60,21 @@ function goBack() {
     </section>
 
     <!--    <section class="schedule width-sm"></section>-->
-    <section class="info width-sm">
-      <h2 class="info__title">{{ detailPage.about_course.section_title }}</h2>
-      <p class="info__text">{{ detailPage.about_course.description }}</p>
-    </section>
-    <section class="conference width-sm">
 
-      <img class="conference__img"
-           :src="detailPage.course_photo.image"
-           alt="conference"/>
-    </section>
-    <section class="feedback">
-      <feedback :page="slug"/>
-    </section>
+
+        <section class="info width-sm">
+          <h2 class="info__title">{{ detailPage.about_course.section_title }}</h2>
+          <p class="info__text">{{ detailPage.about_course.description }}</p>
+        </section>
+        <section class="conference width-sm">
+
+          <img class="conference__img"
+               :src="detailPage.course_photo.image"
+               alt="conference"/>
+        </section>
+        <section class="feedback-container">
+          <feedback :page="slug"/>
+        </section>
   </main>
 </template>
 
@@ -102,6 +104,9 @@ function goBack() {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
 }
 
 .hero {
@@ -141,6 +146,11 @@ function goBack() {
     display: flex;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+      width: 164px;
+      height: 46px;
+      padding: 11px;
+    }
 
   }
 
@@ -149,7 +159,12 @@ function goBack() {
     font-size: 40px;
     line-height: 1.5;
     letter-spacing: 0;
-
+    @media (max-width: 768px) {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
   }
 
   &__header-container {
@@ -160,6 +175,10 @@ function goBack() {
 
   &__img {
     max-width: 800px;
+    @media (max-width: 768px) {
+      height: 300px;
+      max-width: 443px;
+    }
   }
 
 }
@@ -175,6 +194,10 @@ function goBack() {
     font-size: 32px;
     line-height: 1.5;
     letter-spacing: 0;
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 1.2;
+    }
   }
 
   &__text {
@@ -182,13 +205,19 @@ function goBack() {
     font-size: 18px;
     line-height: 1.5;
     letter-spacing: 0;
+    color:#4D5358;
   }
+
 }
 
 .conference {
   &__img {
     border-radius: 30px;
     width: 840px;
+    @media (max-width: 768px) {
+      width: 452px;
+      height: 300px;
+    }
   }
 }
 

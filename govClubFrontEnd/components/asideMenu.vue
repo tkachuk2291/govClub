@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import {useMobileMenu} from '@/composables/useMobileMenu'
 
-const {isOpen, close} = useMobileMenu()
+const {isOpen} = useMobileMenu()
+
+watch(isOpen, (val) => {
+  if (val) {
+    document.body.classList.add('no-scroll')
+  } else {
+    document.body.classList.remove('no-scroll')
+  }
+})
 
 
 </script>
 
 <template>
-  <div class="aside-menu" v-show="isOpen" @click.self="close">
-    <div class="aside-menu-header">
-      <headerMobile/>
-    </div>
+  <div class="aside-menu" v-show="isOpen">
+    <headerMobile/>
+
     <div class="aside-menu-content">
       <ul class="menu">
         <li class="menu__item">
@@ -39,13 +46,38 @@ const {isOpen, close} = useMobileMenu()
 <style scoped lang="scss">
 
 
-
 .aside-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   inset: 0;
   background-color: white;
   z-index: 1000;
   width: 100%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  &__link {
+    text-decoration: none;
+    color: #101014;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+}
+
+.language-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 60px;
 }
 
 </style>

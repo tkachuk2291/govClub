@@ -8,6 +8,9 @@ body, html {
 .width-sm {
   width: 800px;
   margin: 0 auto;
+  @media #{$mobile} {
+    max-width: 100%;
+  }
 }
 
 .width-lg {
@@ -45,5 +48,10 @@ body, html {
   }
 }
 
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
 
 

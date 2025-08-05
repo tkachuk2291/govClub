@@ -109,6 +109,7 @@ $desktop: "(min-width: 1024px)";
 .page-container {
   @media #{$mobile} {
     padding: 0 16px;
+    padding-top:50px;
   }
 }
 
@@ -272,6 +273,7 @@ $desktop: "(min-width: 1024px)";
     @media #{$mobile} {
       font-size: 16px;
     }
+
   }
 
   &__header-description {

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import {useMobileMenu} from "~/composables/useMobileMenu";
+
 const {page} = defineProps(['page'])
 
 
-console.log(page , 'DD')
 const formFeedback = reactive({
   name: '',
   email: '',
@@ -33,11 +34,15 @@ async function submitForm() {
 }
 
 
+const feedbackForm = useMobileMenu()
+
+
 </script>
 
 <template>
 
   <section class="feedback">
+    <img alt="close" v-show="!feedbackForm.isOpen" @click="feedbackForm.close" src="../public/feedbackForm/mobile/close-mobile.svg" />
     <div class="feedback__container">
       <div class="feedback__header">
         <h2 class="feedback__header-title">записатись</h2>
@@ -76,6 +81,15 @@ async function submitForm() {
   position: relative;
   background-color: #345686;
   border-radius: 30px;
+   @media (max-width: 768px) {
+    padding: 0 20px;
+     background-image: url('/feedbackForm/mobile/flower-mobile.png');
+     background-repeat: no-repeat;
+     background-size: contain;
+
+  }
+
+
 
   &__content {
     margin: 56px 0 30px 0;
@@ -97,6 +111,9 @@ async function submitForm() {
     background-size: contain; /* или cover, как нужно */
     width: 371px; /* или подходящий размер */
     height: 384px;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__header {
@@ -113,6 +130,12 @@ async function submitForm() {
     line-height: 1.2;
     letter-spacing: 0;
     color: #FFFFFF;
+    @media (max-width: 768px) {
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
   }
 
   &__header-description {
@@ -122,6 +145,14 @@ async function submitForm() {
     line-height: 1.5;
     letter-spacing: 0;
     color: white;
+    @media (max-width: 768px) {
+      width: 100%;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      padding:0 20px;
+    }
   }
 
   &__text {
@@ -130,6 +161,12 @@ async function submitForm() {
     line-height: 1.5;
     letter-spacing: 0;
     color: white;
+    @media (max-width: 768px) {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
 
   }
 
@@ -151,12 +188,18 @@ async function submitForm() {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  @media (max-width: 768px) {
+    gap:32px
+  }
 
   &__input-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 40px;
+    @media (max-width: 768px) {
+    gap:16px
+  }
   }
 
   &__input {
@@ -168,6 +211,10 @@ async function submitForm() {
     box-sizing: border-box;
     background-color: transparent;
     padding: 16px 0 17px 16px;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 100%;
+    }
     //outline: none;
     &:focus {
       outline: none;
@@ -188,6 +235,9 @@ async function submitForm() {
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
+    @media (max-width: 768px) {
+      padding: 18px 0;
+    }
   }
 }
 

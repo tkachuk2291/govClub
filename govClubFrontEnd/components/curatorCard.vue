@@ -40,11 +40,20 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     font-size: 32px;
     line-height: 1.5;
     letter-spacing: 0;
+    @media (max-width: 768px) {
+      font-size: 22px;
+      line-height: 1.2;
+
+    }
   }
 
   &__img {
     width: 400px;
     height: 400px;
+    @media (max-width: 768px) {
+      width: 122px;
+      height: 122px;
+    }
 
   }
 
@@ -65,6 +74,10 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     font-size: 20px;
     line-height: 1.5;
     letter-spacing: 0;
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 1.5;
+    }
   }
 
   &__text {
@@ -72,6 +85,7 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     font-size: 18px;
     line-height: 1.5;
     letter-spacing: 0;
+    color:#4D5358;
   }
 }
 </style>
