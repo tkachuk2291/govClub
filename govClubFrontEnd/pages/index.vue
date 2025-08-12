@@ -11,6 +11,7 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8005/h
   }
 })
 import {useRouter, useRoute} from 'vue-router'
+
 const {toggleForm} = useFeedback()
 
 
@@ -52,7 +53,7 @@ const router = useRouter()
         </div>
       </section>
     </header>
-      <main class="main width-lg">
+    <main class="main width-lg">
         <section class="directions width-md" id="directions">
           <h2 class="directions__title">{{ sections.direction.section_title }}</h2>
           <div class="directions__content">
@@ -74,50 +75,54 @@ const router = useRouter()
 
             <div class="course-announcements__card"
                  v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
-                <div class="course-announcements__card-header">
-                  <img
-                      class="course-announcements__card-img"
-                      alt="course"
-                      :src="courseAnnouncementsCard.image"
-                  />
-                  <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
+              <div class="course-announcements__card-header">
+                <img
+                    class="course-announcements__card-img"
+                    alt="course"
+                    :src="courseAnnouncementsCard.image"
+                />
+                <h3 class="course-announcements__card-title">{{ courseAnnouncementsCard.title }}</h3>
+              </div>
+              <div class="course-announcements__card-content">
+                <div class="course-announcements__card-info">
+                  <p class="course-announcements__card-info-name">Лектор: <strong
+                      class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
+                  <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
                 </div>
-                <div class="course-announcements__card-content">
-                  <div class="course-announcements__card-info">
-                    <p class="course-announcements__card-info-name">Лектор: <strong
-                        class="course-announcements__text-fatty">{{ courseAnnouncementsCard.lector }}</strong></p>
-                    <p class="course-announcements__card-info-date">{{ courseAnnouncementsCard.date }}</p>
-                  </div>
-                  <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
-                  <div class="course-announcements__card-button-container">
-                    <a class="course-announcements__card-button course-announcements__card-button--blue"  href="javascript:void(0)" @click="toggleForm">Записатися</a>
-                    <NuxtLink class="course-announcements__card-button course-announcements__card-button--white"
-                              :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">Докладніше</NuxtLink>
-                  </div>
+                <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
+                <div class="course-announcements__card-button-container">
+                  <a class="course-announcements__card-button course-announcements__card-button--blue" href="#">Записатися</a>
+                  <NuxtLink class="course-announcements__card-button course-announcements__card-button--white"
+                            :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">Докладніше
+                  </NuxtLink>
                 </div>
+              </div>
             </div>
           </div>
         </section>
-      </main>
+    </main>
   </div>
 </template>
 
 <style lang="scss" scoped>
 $mobile: "(max-width: 768px)";
-$tablet: "(min-width: 769px)";
-$desktop: "(min-width: 1024px)";
+$tablet: "(min-width: 769px) and (max-width: 1300px)";
+$desktop: "(min-width: 1301px)";
+
+
+
 
 
 .page-container {
   width: 100%;
   box-sizing: border-box;
-   @media #{$tablet} {
+  @media #{$tablet} {
     padding: 0 32px;
   }
   @media #{$mobile} {
     box-sizing: border-box;
     padding: 0 16px;
-    padding-top:50px;
+    padding-top: 50px;
   }
 }
 
@@ -216,18 +221,18 @@ $desktop: "(min-width: 1024px)";
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     @media #{$tablet} {
-     width: 850px;
-      
+      width: 850px;
+
     }
-    
+
     @media #{$mobile} {
       width: 100%;
       height: 70px;
       padding: 23px;
     }
-    
+
   }
 
   &__text {
@@ -247,6 +252,7 @@ $desktop: "(min-width: 1024px)";
   width: 98%;
   box-sizing: border-box;
   height: 100%;
+  z-index: 10;
   @media #{$mobile} {
     border-radius: 20px;
   }
@@ -320,7 +326,7 @@ $desktop: "(min-width: 1024px)";
     padding-top: 140px;
     @media #{$mobile} {
       max-width: 100%;
-      margin:0 20px 32px 20px;
+      margin: 0 20px 32px 20px;
       flex-direction: column;
       gap: 40px;
       padding-top: 50px;
@@ -346,7 +352,7 @@ $desktop: "(min-width: 1024px)";
       padding: 0 !important;
       margin: 0 20px;
       min-height: 124px;
-      gap:10px;
+      gap: 10px;
       border-radius: 15px;
 
     }
@@ -371,6 +377,7 @@ $desktop: "(min-width: 1024px)";
     position: absolute;
     left: 0;
     bottom: 0;
+    z-index: 0;
     @media #{$mobile} {
       display: none;
     }
@@ -384,6 +391,7 @@ $desktop: "(min-width: 1024px)";
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 0;
     @media #{$mobile} {
       display: none;
     }
@@ -412,7 +420,7 @@ $desktop: "(min-width: 1024px)";
     margin: 0 auto;
     @media #{$mobile} {
       max-width: 100%;
-      gap:24px;
+      gap: 24px;
     }
   }
 
@@ -452,15 +460,19 @@ $desktop: "(min-width: 1024px)";
     grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: 316px;
     column-gap: 40px;
+    @media #{$desktop} {
+      grid-template-columns: repeat(3, 1fr);;
+
+    }
     @media #{$tablet} {
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
     }
     @media #{$mobile} {
-       grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
       column-gap: 0;
       row-gap: 16px;
-       //grid-template-rows: 343px;
+      //grid-template-rows: 343px;
     }
   }
 
@@ -472,9 +484,11 @@ $desktop: "(min-width: 1024px)";
     padding: 30px;
     border-radius: 30px;
     align-items: center;
-    //min-height: 316px;
+    min-height: 316px;
     justify-content: space-between;
     box-sizing: border-box;
+
+
 
     @media #{$mobile} {
       min-height: 280px;
@@ -526,7 +540,7 @@ $desktop: "(min-width: 1024px)";
     text-align: center;
     margin-top: auto;
     @media #{$mobile} {
-      color:#345686;
+      color: #345686;
     }
 
   }

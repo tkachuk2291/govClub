@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header></Header>
-<!--    <HeaderMobile v-else></HeaderMobile>-->
-<!--    <asideMenu v-if="currentWidth === 'mobile' && isOpen" />-->
+    <arrowUp />
+
     <NuxtPage/>
     <NuxtRouteAnnouncer/>
   </div>
@@ -11,5 +11,5 @@
 
 
 <script setup lang="ts">
-  import Header from "~/components/Header.vue";
+  import Header from "~/components/header.vue";
 </script>
