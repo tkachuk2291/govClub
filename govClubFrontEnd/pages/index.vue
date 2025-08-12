@@ -1,6 +1,8 @@
 <script setup lang="ts">
 
 
+import {useFeedback} from "~/composables/useFeedback";
+
 const {data: sections, pending, error} = await useFetch('http://localhost:8005/home-page/', {
   server: true,
   method: 'GET',
@@ -9,6 +11,8 @@ const {data: sections, pending, error} = await useFetch('http://localhost:8005/h
   }
 })
 import {useRouter, useRoute} from 'vue-router'
+const {toggleForm} = useFeedback()
+
 
 const router = useRouter()
 
@@ -70,8 +74,6 @@ const router = useRouter()
 
             <div class="course-announcements__card"
                  v-for="courseAnnouncementsCard in sections.course_announcements.course_announcement_card">
-              <NuxtLink class="course-announcements__card-link"
-                        :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">
                 <div class="course-announcements__card-header">
                   <img
                       class="course-announcements__card-img"
@@ -88,11 +90,11 @@ const router = useRouter()
                   </div>
                   <p class="course-announcements__card-text">{{ courseAnnouncementsCard.description }}</p>
                   <div class="course-announcements__card-button-container">
-                    <a class="course-announcements__card-button course-announcements__card-button--blue">Записатися</a>
-                    <a class="course-announcements__card-button course-announcements__card-button--white">Докладніше</a>
+                    <a class="course-announcements__card-button course-announcements__card-button--blue"  href="javascript:void(0)" @click="toggleForm">Записатися</a>
+                    <NuxtLink class="course-announcements__card-button course-announcements__card-button--white"
+                              :to="{ name: 'slug', params: { slug: `${courseAnnouncementsCard.slug}` } }">Докладніше</NuxtLink>
                   </div>
                 </div>
-              </NuxtLink>
             </div>
           </div>
         </section>
@@ -681,6 +683,7 @@ $desktop: "(min-width: 1024px)";
     align-items: center;
     justify-content: center;
     border: 1px solid #345686;
+    text-decoration: None;
     @media #{$mobile} {
       height: 46px;
       width: 100%;

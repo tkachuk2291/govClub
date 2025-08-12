@@ -48,16 +48,16 @@ const {toggleMenu, isOpenMenu, closeMenu} = useAsideMenu()
     <div class="aside-menu-content">
       <ul class="menu">
         <li class="menu__item">
-          <a class="menu__link" href="#">Напрямки</a>
+          <NuxtLink :to="{ path: '/', hash: '#directions' }" class="menu__link" @click="toggleMenu">Напрямки</NuxtLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#">Курси</a>
+          <NuxtLink :to="{ path: '/', hash: '#course-announcements' }" class="menu__link" @click="toggleMenu">Курси</NuxtLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#">Команда</a>
+          <NuxtLink :to="{ path: 'team/'}" class="menu__link" @click="toggleMenu">Команда</NuxtLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#">Контакти</a>
+          <NuxtLink :to="{ path: '/' , hash: '#contacts'}" class="menu__link" @click="toggleMenu">Контакти</NuxtLink>
         </li>
       </ul>
     </div>
