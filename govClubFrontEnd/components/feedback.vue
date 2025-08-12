@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {useMobileMenu} from "~/composables/useMobileMenu";
+
+import {useFeedback} from "~/composables/useFeedback";
 
 const {page} = defineProps(['page'])
 
@@ -34,15 +35,11 @@ async function submitForm() {
 }
 
 
-const feedbackForm = useMobileMenu()
-
-
 </script>
 
 <template>
 
   <section class="feedback">
-    <img alt="close" v-show="!feedbackForm.isOpen" @click="feedbackForm.close" src="../public/feedbackForm/mobile/close-mobile.svg" />
     <div class="feedback__container">
       <div class="feedback__header">
         <h2 class="feedback__header-title">записатись</h2>
@@ -67,8 +64,7 @@ const feedbackForm = useMobileMenu()
       <p class="feedback__text">Продовжуючи ви погоджуєтесь з <a class="feedback__text-link" href="#">Політикою
         Конфіденційності</a></p>
     </div>
-    <div class="feedback__img-container">
-    </div>
+    <div class="feedback__img-container"></div>
 
   </section>
 
@@ -81,14 +77,12 @@ const feedbackForm = useMobileMenu()
   position: relative;
   background-color: #345686;
   border-radius: 30px;
-   @media (max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 0 20px;
-     background-image: url('/feedbackForm/mobile/flower-mobile.png');
-     background-repeat: no-repeat;
-     background-size: contain;
-
+    background-image: url('/feedbackForm/mobile/flower-blue-mobile.png');
+    background-repeat: no-repeat;
+    background-size: contain;
   }
-
 
 
   &__content {
@@ -108,9 +102,12 @@ const feedbackForm = useMobileMenu()
     right: 0;
     background-image: url('/feedbackForm/flower-blue.png');
     background-repeat: no-repeat;
-    background-size: contain; /* или cover, как нужно */
-    width: 371px; /* или подходящий размер */
-    height: 384px;
+    width: 400px;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+
+
     @media (max-width: 768px) {
       display: none;
     }
@@ -151,7 +148,7 @@ const feedbackForm = useMobileMenu()
       font-size: 20px;
       line-height: 1.5;
       letter-spacing: 0;
-      padding:0 20px;
+      padding: 0 20px;
     }
   }
 
@@ -189,7 +186,7 @@ const feedbackForm = useMobileMenu()
   flex-direction: column;
   gap: 40px;
   @media (max-width: 768px) {
-    gap:32px
+    gap: 32px
   }
 
   &__input-container {
@@ -198,8 +195,8 @@ const feedbackForm = useMobileMenu()
     flex-wrap: wrap;
     gap: 40px;
     @media (max-width: 768px) {
-    gap:16px
-  }
+      gap: 16px
+    }
   }
 
   &__input {

@@ -16,6 +16,5 @@ export default defineNuxtConfig({
     families: {
       Inter: [400, 500, 700],
     },
-    display: 'swap',
   },
 })

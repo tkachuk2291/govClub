@@ -55,26 +55,30 @@ function goBack() {
 
       </div>
       <div class="hero-content-bottom">
-        <CuratorCard v-if="detailPage?.curator" :curatorCardProps="detailPage.curator"/>
+        <CuratorCard
+            v-if="detailPage?.curator"
+            :curatorCardProps="detailPage.curator"
+            curatorProp="curators"
+        />
       </div>
     </section>
 
     <!--    <section class="schedule width-sm"></section>-->
 
 
-        <section class="info width-sm">
-          <h2 class="info__title">{{ detailPage.about_course.section_title }}</h2>
-          <p class="info__text">{{ detailPage.about_course.description }}</p>
-        </section>
-        <section class="conference width-sm">
+    <section class="info width-sm">
+      <h2 class="info__title">{{ detailPage.about_course.section_title }}</h2>
+      <p class="info__text">{{ detailPage.about_course.description }}</p>
+    </section>
+    <section class="conference width-sm">
 
-          <img class="conference__img"
-               :src="detailPage.course_photo.image"
-               alt="conference"/>
-        </section>
-        <section class="feedback-container">
-          <feedback :page="slug"/>
-        </section>
+      <img class="conference__img"
+           :src="detailPage.course_photo.image"
+           alt="conference"/>
+    </section>
+    <section class="feedback-container">
+      <feedback :page="slug"/>
+    </section>
   </main>
 </template>
 
@@ -104,9 +108,13 @@ function goBack() {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  @media (min-width: 650px) and (max-width: 768px) {
+    margin: 0 auto;
+  }
   @media (max-width: 768px) {
     padding: 0 16px;
   }
+
 }
 
 .hero {
@@ -177,8 +185,13 @@ function goBack() {
     max-width: 800px;
     @media (max-width: 768px) {
       height: 300px;
-      max-width: 443px;
+      max-width: 343px;
     }
+  }
+
+  &__content {
+    margin: 0 auto;
+
   }
 
 }
@@ -205,7 +218,7 @@ function goBack() {
     font-size: 18px;
     line-height: 1.5;
     letter-spacing: 0;
-    color:#4D5358;
+    color: #4D5358;
   }
 
 }
@@ -215,8 +228,9 @@ function goBack() {
     border-radius: 30px;
     width: 840px;
     @media (max-width: 768px) {
-      width: 452px;
+      width: 342px;
       height: 300px;
+      margin: 0 auto;
     }
   }
 }

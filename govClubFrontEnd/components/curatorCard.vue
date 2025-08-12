@@ -2,11 +2,11 @@
 const props = defineProps({
   curatorCardProps: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
 
-console.log(props.curatorCardProps.section_title , 'FFF')
+
 
 </script>
 
@@ -16,9 +16,11 @@ console.log(props.curatorCardProps.section_title , 'FFF')
       <h3 class="curator-card__header-text">{{ curatorCardProps.section_title }}</h3>
     </div>
     <div class="curator-card__content">
-      <img class="curator-card__img"
-           :src="curatorCardProps.image"
-           alt="curator"/>
+      <div class="curator-card__img_container">
+        <img class="curator-card__img"
+             :src="curatorCardProps.image"
+             alt="curator"/>
+      </div>
       <div class="curator-card__text-container">
         <h4 class="curator-card__title">{{ curatorCardProps.fullname }}</h4>
         <p class="curator-card__text">{{ curatorCardProps.description }}</p>
@@ -34,6 +36,9 @@ console.log(props.curatorCardProps.section_title , 'FFF')
   flex-direction: column;
   gap: 30px;
   width: 400px;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 
   &__header-text {
     font-weight: 700;
@@ -51,8 +56,8 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     width: 400px;
     height: 400px;
     @media (max-width: 768px) {
-      width: 122px;
-      height: 122px;
+      width: 182px;
+      height: 182px;
     }
 
   }
@@ -61,6 +66,7 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     display: flex;
     flex-direction: column;
     gap: 20px;
+
   }
 
   &__text-container {
@@ -85,7 +91,16 @@ console.log(props.curatorCardProps.section_title , 'FFF')
     font-size: 18px;
     line-height: 1.5;
     letter-spacing: 0;
-    color:#4D5358;
+    color: #4D5358;
+  }
+  &__img_container{
+    display: flex;
+    @media (max-width: 768px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
+
 </style>

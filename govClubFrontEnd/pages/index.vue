@@ -107,7 +107,13 @@ $desktop: "(min-width: 1024px)";
 
 
 .page-container {
+  width: 100%;
+  box-sizing: border-box;
+   @media #{$tablet} {
+    padding: 0 32px;
+  }
   @media #{$mobile} {
+    box-sizing: border-box;
     padding: 0 16px;
     padding-top:50px;
   }
@@ -145,6 +151,8 @@ $desktop: "(min-width: 1024px)";
   width: 100%;
   flex-direction: column;
   gap: 50px;
+
+
   @media #{$mobile} {
     gap: 16px;
   }
@@ -206,11 +214,18 @@ $desktop: "(min-width: 1024px)";
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    @media #{$tablet} {
+     width: 850px;
+      
+    }
+    
     @media #{$mobile} {
       width: 100%;
       height: 70px;
       padding: 23px;
     }
+    
   }
 
   &__text {
@@ -435,6 +450,10 @@ $desktop: "(min-width: 1024px)";
     grid-template-columns: repeat(3, 1fr);
     //grid-template-rows: 316px;
     column-gap: 40px;
+    @media #{$tablet} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
     @media #{$mobile} {
        grid-template-columns: 1fr;
       column-gap: 0;
@@ -602,6 +621,10 @@ $desktop: "(min-width: 1024px)";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+
+    @media #{$tablet} {
+      grid-template-columns: repeat(1, 1fr);
+    }
     @media #{$mobile} {
       grid-template-columns: 1fr;
       gap: 40px;

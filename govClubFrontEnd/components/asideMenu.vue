@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import {useMobileMenu} from '@/composables/useMobileMenu'
-
-const {isOpen} = useMobileMenu()
 
 watch(isOpen, (val) => {
   if (val) {
@@ -15,7 +12,7 @@ watch(isOpen, (val) => {
 </script>
 
 <template>
-  <div class="aside-menu" v-show="isOpen">
+  <div class="aside-menu" v-show="isOpenForm">
     <headerMobile/>
 
     <div class="aside-menu-content">
