@@ -1,5 +1,3 @@
-Вот готовый текст, который можно сразу вставлять в файл README.md:
-
 ````markdown
 # Gov Club Project
 
